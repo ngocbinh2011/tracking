@@ -21,6 +21,9 @@ public class StudentTracking {
     @ManyToOne
     private Student student;
 
+    @Column(name = "is_absent")
+    private int isAbsent = 0;
+
     @Column(name = "tracking_date")
-    private LocalDate trackingDate;
+    private LocalDate trackingDate = LocalDate.now();
 }

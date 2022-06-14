@@ -143,7 +143,7 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Điểm Danh Lớp ${classes.code} - ${classes.name}</h2></div>
+                    <div class="col-sm-8"><h2>Lịch sử Điểm Danh sinh viên ${student.code} LỚP ${classes.code} - ${classes.name}</h2></div>
                     <div class="col-sm-4">
                         <div class="search-box">
                             <i class="material-icons">&#xE8B6;</i>
@@ -161,11 +161,10 @@
                     <th>Mã môn học <i class="fa fa-sort"></i></th>
                     <th>Ngày học</th>
                     <th>Trạng thái<i class="fa fa-sort"></i></th>
-                    <th>Có/Vắng</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="track" items="${tracks}">
+                <c:forEach var="track" items="${history}">
                     <tr>
                         <td>${track.student.id}</td>
                         <td>${track.student.code}</td>
@@ -178,16 +177,7 @@
                         <c:if test="${track.isAbsent != 1}">
                             <td>Đi học</td>
                         </c:if>
-                        <td>
-                            <form action="/classes/${track.classes.id}/tracking/${track.id}" method="post">
-                                <input type="hidden" name="absent" value="0">
-                                <button type="submit"><i class="material-icons">&#xE417;</i></button>
-                            </form>
-                            <form action="/classes/${track.classes.id}/tracking/${track.id}" method="post">
-                                <input type="hidden" name="absent" value="1">
-                                <button type="submit"><i class="material-icons">&#xE872;</i></button>
-                            </form>
-                        </td>
+
                     </tr>
                 </c:forEach>
                 </tbody>

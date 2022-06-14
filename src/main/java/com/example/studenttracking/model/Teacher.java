@@ -20,7 +20,7 @@ public class Teacher {
     @Column(name = "code")
     private String code;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.REMOVE)
     private Set<Classes> classes = new HashSet<>();
 
 }

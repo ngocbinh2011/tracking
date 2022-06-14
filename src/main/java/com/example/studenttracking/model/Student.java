@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -20,9 +21,22 @@ public class Student {
     @Column(name = "code")
     private String code;
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.REMOVE)
     private Set<Classes> classes = new HashSet<>();
 
     @OneToMany(mappedBy = "student")
     private Set<StudentTracking> studentTrackings = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(code, student.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, code);
+    }
 }
